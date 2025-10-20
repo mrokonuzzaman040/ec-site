@@ -2,6 +2,14 @@
 
 import { useState } from "react"
 import { Menu, X } from "lucide-react"
+import {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
+  NavigationMenuLink,
+} from "@/components/ui/navigation-menu"
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -47,23 +55,88 @@ export default function Header() {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex gap-8">
-            <a href="#" className="text-foreground hover:text-primary font-medium transition">
-              হোম
-            </a>
-            <a href="#" className="text-foreground hover:text-primary font-medium transition">
-              নির্বাচন
-            </a>
-            <a href="#" className="text-foreground hover:text-primary font-medium transition">
-              সংবাদ
-            </a>
-            <a href="#" className="text-foreground hover:text-primary font-medium transition">
-              নোটিশ
-            </a>
-            <a href="#" className="text-foreground hover:text-primary font-medium transition">
-              যোগাযোগ
-            </a>
-          </nav>
+          <NavigationMenu className="hidden md:flex">
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <NavigationMenuLink href="/" className="text-foreground font-medium">
+                  হোম
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>নির্বাচন</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <div className="grid gap-2 p-4 md:w-[500px] lg:w-[600px]">
+                    <ul className="grid grid-cols-2 gap-2">
+                      <li>
+                        <NavigationMenuLink href="/election/schedule">নির্বাচন সূচী</NavigationMenuLink>
+                      </li>
+                      <li>
+                        <NavigationMenuLink href="/election/notices">নোটিশ ও আদেশ</NavigationMenuLink>
+                      </li>
+                      <li>
+                        <NavigationMenuLink href="/election/admin-guidelines">প্রশাসনিক নির্দেশনা</NavigationMenuLink>
+                      </li>
+                      <li>
+                        <NavigationMenuLink href="/election/laws">নির্বাচন আইন</NavigationMenuLink>
+                      </li>
+                      <li>
+                        <NavigationMenuLink href="/election/management">নির্বাচন পরিচালনা</NavigationMenuLink>
+                      </li>
+                    </ul>
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>সেবা</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <div className="grid gap-2 p-4 md:w-[400px] lg:w-[500px]">
+                    <ul className="grid grid-cols-2 gap-2">
+                      <li><NavigationMenuLink href="/services/voter-registration">ভোটার নিবন্ধন</NavigationMenuLink></li>
+                      <li><NavigationMenuLink href="/services/nid-correction">এনআইডি সংশোধন</NavigationMenuLink></li>
+                      <li><NavigationMenuLink href="/services/address-change">ঠিকানা পরিবর্তন</NavigationMenuLink></li>
+                      <li><NavigationMenuLink href="/services/smart-card">স্মার্টকার্ড</NavigationMenuLink></li>
+                    </ul>
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>প্রকাশনা</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <div className="grid gap-2 p-4 md:w-[400px] lg:w-[500px]">
+                    <ul className="grid grid-cols-2 gap-2">
+                      <li><NavigationMenuLink href="/publications/reports">বার্ষিক প্রতিবেদন</NavigationMenuLink></li>
+                      <li><NavigationMenuLink href="/publications/rules">বিধিমালা</NavigationMenuLink></li>
+                      <li><NavigationMenuLink href="/publications/handbook">হ্যান্ডবুক</NavigationMenuLink></li>
+                      <li><NavigationMenuLink href="/publications/research">গবেষণা</NavigationMenuLink></li>
+                    </ul>
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>মিডিয়া</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <div className="grid gap-2 p-4 md:w-[400px] lg:w-[500px]">
+                    <ul className="grid grid-cols-2 gap-2">
+                      <li><NavigationMenuLink href="/media/press">প্রেস বিজ্ঞপ্তি</NavigationMenuLink></li>
+                      <li><NavigationMenuLink href="/media/photos">ছবি গ্যালারী</NavigationMenuLink></li>
+                      <li><NavigationMenuLink href="/media/videos">ভিডিও</NavigationMenuLink></li>
+                      <li><NavigationMenuLink href="/media/news">সংবাদ</NavigationMenuLink></li>
+                    </ul>
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuLink href="/contact" className="text-foreground font-medium">
+                  যোগাযোগ
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
 
           {/* Mobile Menu Button */}
           <button
