@@ -171,25 +171,96 @@ export default function Header() {
 
       {/* Mega Menu Bar */}
       <div className="bg-primary text-primary-foreground">
-        <div className="max-w-7xl mx-auto px-4 py-3 flex gap-6 overflow-x-auto text-sm font-medium">
-          <a href="#" className="hover:opacity-80 whitespace-nowrap">
-            হোম
-          </a>
-          <a href="#" className="hover:opacity-80 whitespace-nowrap">
-            নির্বাচন সূচী
-          </a>
-          <a href="#" className="hover:opacity-80 whitespace-nowrap">
-            নোটিশ ও আদেশ
-          </a>
-          <a href="#" className="hover:opacity-80 whitespace-nowrap">
-            প্রশাসনিক নির্দেশনা
-          </a>
-          <a href="#" className="hover:opacity-80 whitespace-nowrap">
-            নির্বাচন আইন
-          </a>
-          <a href="#" className="hover:opacity-80 whitespace-nowrap">
-            নির্বাচন পরিচালনা
-          </a>
+        <div className="max-w-7xl mx-auto px-4 py-3">
+          <NavigationMenu className="w-full justify-start" viewport={true}>
+            <NavigationMenuList className="gap-4">
+              <NavigationMenuItem>
+                <NavigationMenuLink href="/" className="bg-transparent text-primary-foreground hover:bg-primary/20 rounded px-3 py-2">
+                  হোম
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="bg-transparent text-primary-foreground hover:bg-primary/20 rounded px-3 py-2">
+                  নির্বাচন সূচী
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <div className="grid gap-2 p-4 md:w-[500px] lg:w-[600px]">
+                    <ul className="grid grid-cols-2 gap-2">
+                      <li><NavigationMenuLink href="/election/schedule/national">জাতীয় সংসদ</NavigationMenuLink></li>
+                      <li><NavigationMenuLink href="/election/schedule/local">স্থানীয় সরকার</NavigationMenuLink></li>
+                      <li><NavigationMenuLink href="/election/schedule/by-election">উপনির্বাচন</NavigationMenuLink></li>
+                      <li><NavigationMenuLink href="/election/schedule/others">অন্যান্য</NavigationMenuLink></li>
+                    </ul>
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="bg-transparent text-primary-foreground hover:bg-primary/20 rounded px-3 py-2">
+                  নোটিশ ও আদেশ
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <div className="grid gap-2 p-4 md:w-[500px] lg:w-[600px]">
+                    <ul className="grid grid-cols-2 gap-2">
+                      <li><NavigationMenuLink href="/notices/latest">সর্বশেষ নোটিশ</NavigationMenuLink></li>
+                      <li><NavigationMenuLink href="/orders">আদেশ</NavigationMenuLink></li>
+                      <li><NavigationMenuLink href="/circulars">সার্কুলার</NavigationMenuLink></li>
+                      <li><NavigationMenuLink href="/notices/archive">আর্কাইভ</NavigationMenuLink></li>
+                    </ul>
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="bg-transparent text-primary-foreground hover:bg-primary/20 rounded px-3 py-2">
+                  প্রশাসনিক নির্দেশনা
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <div className="grid gap-2 p-4 md:w-[500px] lg:w-[600px]">
+                    <ul className="grid grid-cols-2 gap-2">
+                      <li><NavigationMenuLink href="/admin/directives">পরিপত্র/প্রজ্ঞাপন</NavigationMenuLink></li>
+                      <li><NavigationMenuLink href="/admin/orders">অফিস আদেশ</NavigationMenuLink></li>
+                      <li><NavigationMenuLink href="/admin/instructions">নির্দেশনা</NavigationMenuLink></li>
+                      <li><NavigationMenuLink href="/admin/forms">ফর্মস</NavigationMenuLink></li>
+                    </ul>
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="bg-transparent text-primary-foreground hover:bg-primary/20 rounded px-3 py-2">
+                  নির্বাচন আইন
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <div className="grid gap-2 p-4 md:w-[500px] lg:w-[600px]">
+                    <ul className="grid grid-cols-2 gap-2">
+                      <li><NavigationMenuLink href="/laws/rpo-1972">Representation of the People Order, 1972</NavigationMenuLink></li>
+                      <li><NavigationMenuLink href="/laws/rules">নির্বাচনী বিধিমালা</NavigationMenuLink></li>
+                      <li><NavigationMenuLink href="/laws/constitution">সংবিধানের সংশ্লিষ্ট অনুচ্ছেদ</NavigationMenuLink></li>
+                      <li><NavigationMenuLink href="/laws/others">অন্যান্য আইন</NavigationMenuLink></li>
+                    </ul>
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="bg-transparent text-primary-foreground hover:bg-primary/20 rounded px-3 py-2">
+                  নির্বাচন পরিচালনা
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <div className="grid gap-2 p-4 md:w-[500px] lg:w-[600px]">
+                    <ul className="grid grid-cols-2 gap-2">
+                      <li><NavigationMenuLink href="/management/training">প্রশিক্ষণ</NavigationMenuLink></li>
+                      <li><NavigationMenuLink href="/management/handbook">হ্যান্ডবুক</NavigationMenuLink></li>
+                      <li><NavigationMenuLink href="/management/guidelines">নির্দেশিকা</NavigationMenuLink></li>
+                      <li><NavigationMenuLink href="/management/resources">রিসোর্স</NavigationMenuLink></li>
+                    </ul>
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
         </div>
       </div>
     </header>
