@@ -42,88 +42,103 @@ graph TD
 
 ## 2. Technology Description
 
-- Frontend: React@19 + Next.js@15 + TypeScript + Tailwind CSS + Radix UI
-- Backend: Next.js API Routes + Node.js
-- Database: Supabase (PostgreSQL)
-- Scraping: Puppeteer + Cheerio
-- Caching: Node-cache + Redis (optional)
-- Validation: Zod
-- Scheduling: Node-cron
+* Frontend: React\@19 + Next.js\@15 + TypeScript + Tailwind CSS + Radix UI
+
+* Backend: Next.js API Routes + Node.js
+
+* Database: Supabase (PostgreSQL)
+
+* Scraping: Puppeteer + Cheerio
+
+* Caching: Node-cache + Redis (optional)
+
+* Validation: Zod
+
+* Scheduling: Node-cron
 
 ## 3. Route Definitions
 
-| Route | Purpose |
-|-------|---------|
-| / | Home page with integrated scraped data display |
-| /admin | Admin dashboard for scraping management and monitoring |
-| /admin/scraping | Scraping configuration and manual trigger interface |
-| /admin/logs | Error logs and scraping history viewer |
-| /api/scrape | Manual scraping trigger endpoint |
-| /api/data/news | News data API endpoint |
-| /api/data/notices | Notices data API endpoint |
-| /api/data/officers | Officers data API endpoint |
-| /api/data/elections | Election data API endpoint |
-| /api/admin/config | Scraping configuration management |
-| /api/admin/logs | System logs and monitoring data |
+| Route               | Purpose                                                |
+| ------------------- | ------------------------------------------------------ |
+| /                   | Home page with integrated scraped data display         |
+| /admin              | Admin dashboard for scraping management and monitoring |
+| /admin/scraping     | Scraping configuration and manual trigger interface    |
+| /admin/logs         | Error logs and scraping history viewer                 |
+| /api/scrape         | Manual scraping trigger endpoint                       |
+| /api/data/news      | News data API endpoint                                 |
+| /api/data/notices   | Notices data API endpoint                              |
+| /api/data/officers  | Officers data API endpoint                             |
+| /api/data/elections | Election data API endpoint                             |
+| /api/admin/config   | Scraping configuration management                      |
+| /api/admin/logs     | System logs and monitoring data                        |
 
 ## 4. API Definitions
 
 ### 4.1 Core API
 
 **Data Scraping Trigger**
+
 ```
 POST /api/scrape
 ```
 
 Request:
-| Param Name | Param Type | isRequired | Description |
-|------------|------------|------------|-------------|
-| target | string | false | Specific data type to scrape (news, notices, officers, elections) |
-| force | boolean | false | Force scraping even if recently updated |
+
+| Param Name | Param Type | isRequired | Description                                                       |
+| ---------- | ---------- | ---------- | ----------------------------------------------------------------- |
+| target     | string     | false      | Specific data type to scrape (news, notices, officers, elections) |
+| force      | boolean    | false      | Force scraping even if recently updated                           |
 
 Response:
-| Param Name | Param Type | Description |
-|------------|------------|-------------|
-| success | boolean | Scraping operation status |
-| message | string | Operation result message |
-| jobId | string | Unique identifier for tracking scraping job |
+
+| Param Name | Param Type | Description                                 |
+| ---------- | ---------- | ------------------------------------------- |
+| success    | boolean    | Scraping operation status                   |
+| message    | string     | Operation result message                    |
+| jobId      | string     | Unique identifier for tracking scraping job |
 
 **News Data Retrieval**
+
 ```
 GET /api/data/news
 ```
 
 Request:
-| Param Name | Param Type | isRequired | Description |
-|------------|------------|------------|-------------|
-| limit | number | false | Number of news items to return (default: 10) |
-| offset | number | false | Pagination offset |
-| category | string | false | Filter by news category |
+
+| Param Name | Param Type | isRequired | Description                                  |
+| ---------- | ---------- | ---------- | -------------------------------------------- |
+| limit      | number     | false      | Number of news items to return (default: 10) |
+| offset     | number     | false      | Pagination offset                            |
+| category   | string     | false      | Filter by news category                      |
 
 Response:
-| Param Name | Param Type | Description |
-|------------|------------|-------------|
-| data | NewsItem[] | Array of news items |
-| total | number | Total count of available news items |
-| lastUpdated | string | ISO timestamp of last data update |
+
+| Param Name  | Param Type  | Description                         |
+| ----------- | ----------- | ----------------------------------- |
+| data        | NewsItem\[] | Array of news items                 |
+| total       | number      | Total count of available news items |
+| lastUpdated | string      | ISO timestamp of last data update   |
 
 **Notices Data Retrieval**
+
 ```
 GET /api/data/notices
 ```
 
 Request:
-| Param Name | Param Type | isRequired | Description |
-|------------|------------|------------|-------------|
-| limit | number | false | Number of notices to return (default: 10) |
-| priority | string | false | Filter by priority level (high, medium, low) |
+
+| Param Name | Param Type | isRequired | Description                                  |
+| ---------- | ---------- | ---------- | -------------------------------------------- |
+| limit      | number     | false      | Number of notices to return (default: 10)    |
+| priority   | string     | false      | Filter by priority level (high, medium, low) |
 
 Response:
-| Param Name | Param Type | Description |
-|------------|------------|-------------|
-| data | NoticeItem[] | Array of notice items |
-| total | number | Total count of available notices |
-| lastUpdated | string | ISO timestamp of last data update |
+
+| Param Name  | Param Type    | Description                       |
+| ----------- | ------------- | --------------------------------- |
+| data        | NoticeItem\[] | Array of notice items             |
+| total       | number        | Total count of available notices  |
+| lastUpdated | string        | ISO timestamp of last data update |
 
 ## 5. Server Architecture Diagram
 
@@ -250,6 +265,7 @@ erDiagram
 ### 6.2 Data Definition Language
 
 **News Table**
+
 ```sql
 -- Create news table
 CREATE TABLE news (
@@ -277,6 +293,7 @@ GRANT ALL PRIVILEGES ON news TO authenticated;
 ```
 
 **Notices Table**
+
 ```sql
 -- Create notices table
 CREATE TABLE notices (
@@ -305,6 +322,7 @@ GRANT ALL PRIVILEGES ON notices TO authenticated;
 ```
 
 **Officers Table**
+
 ```sql
 -- Create officers table
 CREATE TABLE officers (
@@ -334,6 +352,7 @@ GRANT ALL PRIVILEGES ON officers TO authenticated;
 ```
 
 **Elections Table**
+
 ```sql
 -- Create elections table
 CREATE TABLE elections (
@@ -361,6 +380,7 @@ GRANT ALL PRIVILEGES ON elections TO authenticated;
 ```
 
 **Scraping Logs Table**
+
 ```sql
 -- Create scraping logs table
 CREATE TABLE scraping_logs (
@@ -387,6 +407,7 @@ GRANT ALL PRIVILEGES ON scraping_logs TO authenticated;
 ```
 
 **Initial Configuration Data**
+
 ```sql
 -- Insert initial scraping configuration
 INSERT INTO scraping_logs (job_id, target_type, status, items_scraped, completed_at)
@@ -396,3 +417,4 @@ VALUES
     ('init-003', 'officers', 'completed', 0, NOW()),
     ('init-004', 'elections', 'completed', 0, NOW());
 ```
+
